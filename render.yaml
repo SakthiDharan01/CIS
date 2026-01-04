@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: lavs
+    env: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    autoDeploy: true
+    region: oregon
+    numInstances: 1
+    healthCheckPath: /

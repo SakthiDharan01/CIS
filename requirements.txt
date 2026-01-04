@@ -1,0 +1,14 @@
+fastapi
+uvicorn
+python-multipart
+jinja2
+python-magic-bin
+Pillow
+opencv-python
+librosa
+requests
+beautifulsoup4
+numpy
+scikit-learn
+exifread
+python-whois

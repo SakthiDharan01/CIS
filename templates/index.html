@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LAVS - Layered Authenticity Verification System</title>
+    <link rel="stylesheet" href="{{ url_for('static', path='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Layered Authenticity Verification System (LAVS)</h1>
+        <p>Upload an image, video, audio file, or enter a URL to verify its authenticity.</p>
+        
+        <div class="card">
+            <form action="/analyze" method="post" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="file">Upload File (Image, Video, Audio):</label>
+                    <input type="file" id="file" name="file">
+                </div>
+                
+                <div class="divider">OR</div>
+
+                <div class="form-group">
+                    <label for="url">Enter Website URL:</label>
+                    <input type="text" id="url" name="url" placeholder="https://example.com">
+                </div>
+
+                <button type="submit" class="btn">Verify Authenticity</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

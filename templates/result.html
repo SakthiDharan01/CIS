@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LAVS - Verification Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', path='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Verification Verdict</h1>
+        
+        <div class="result-card {{ verdict.risk_level.lower() }}">
+            <h2>{{ verdict.verdict }}</h2>
+            <p class="score">Authenticity Score: {{ verdict.final_score }}%</p>
+            <p class="risk">Risk Level: {{ verdict.risk_level }}</p>
+            {% if verdict.classification %}
+            <p class="meta">Detected Type: {{ verdict.classification.content_type }} ({{ verdict.classification.format }})</p>
+            {% endif %}
+        </div>
+
+        <div class="details">
+            <h3>Analysis Breakdown</h3>
+            {% for layer in verdict.layer_breakdown %}
+            <div class="layer-card">
+                <h4>{{ layer.layer }}</h4>
+                <p>Score: {{ layer.score }}</p>
+                <ul>
+                    {% for detail in layer.details %}
+                    <li>{{ detail }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endfor %}
+        </div>
+
+        <a href="/" class="btn">Analyze Another</a>
+    </div>
+</body>
+</html>

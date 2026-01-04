@@ -1,0 +1,12 @@
+.venv
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+*.so
+*.egg-info
+uploads
+.vscode
+.git
+.gitignore
+Dockerfile
