@@ -12,6 +12,7 @@ RUN apt-get update && \
         libgl1 \
         ffmpeg \
         libsndfile1 \
+        libmagic1 \
     && rm -rf /var/lib/apt/lists/*
 
 COPY requirements.txt ./
