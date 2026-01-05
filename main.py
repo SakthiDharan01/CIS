@@ -27,6 +27,7 @@ app.add_middleware(
         "https://127.0.0.1:3000",
         "https://cis-3f7h.onrender.com",
         "https://cis-frontend.vercel.app",
+        "https://deep404.vercel.app",
     ],
     allow_credentials=True,
     allow_methods=["*"],
