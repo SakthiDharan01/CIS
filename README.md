@@ -12,7 +12,7 @@ FastAPI-based multi-modal verifier that detects AI-generated or manipulated cont
   - Audio: pitch stability, pause randomness, spectral flatness/flux, RMS spike proxy for breaths.
   - Web: SSL/redirects, DOM repetition, sentence-length uniformity, keyword over-optimization.
 - **Behavioral Deviation:** Flags over-consistency across layers and low entropy signals.
-- **Adaptive Aggregation:** Content-type-aware weighting with a human-readable verdict (Real / Suspicious / Likely Fake).
+- **Adaptive Aggregation:** Risk-weighted 0.2/0.6/0.2 (metadata / AI-pattern / behavioral) with verdict bands: 0–30 Real, 31–60 Suspicious, 61–100 Likely Fake.
 
 ## Setup
 
@@ -29,6 +29,44 @@ Or use the VS Code Task: **Run LAVS**.
 
 3) **Open UI**
 Visit `http://127.0.0.1:8000`.
+
+## API (JSON)
+
+### POST `/verify`
+
+Send either a file (multipart) or a URL (JSON or form field):
+
+**File upload**
+```bash
+curl -X POST \
+  -F "file=@sample.jpg" \
+  http://127.0.0.1:8000/verify
+```
+
+**URL body (JSON)**
+```bash
+curl -X POST \
+  -H "Content-Type: application/json" \
+  -d '{"url":"https://example.com"}' \
+  http://127.0.0.1:8000/verify
+```
+
+**Response**
+```json
+{
+  "verdict": "Likely Fake",
+  "confidence": 68.5,
+  "explanation": "Origin & Metadata Consistency: Very young domain (higher risk).",
+  "breakdown": {
+    "final_score": 68.5,
+    "risk_level": "High",
+    "top_signals": ["…"],
+    "layer_breakdown": [{"layer": "Origin & Metadata Consistency", "score": 35, "details": ["…"]}]
+  }
+}
+```
+
+`confidence` here is the aggregated risk score (0–100). Lower is safer.
 
 ## Project Structure
 

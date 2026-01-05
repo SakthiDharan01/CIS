@@ -12,7 +12,7 @@
         
         <div class="result-card {{ verdict.risk_level.lower() }}">
             <h2>{{ verdict.verdict }}</h2>
-            <p class="score">Authenticity Score: {{ verdict.final_score }}%</p>
+            <p class="score">Risk Score: {{ verdict.final_score }}%</p>
             <p class="risk">Risk Level: {{ verdict.risk_level }}</p>
             {% if verdict.classification %}
             <p class="meta">Detected Type: {{ verdict.classification.content_type }} ({{ verdict.classification.format }})</p>
